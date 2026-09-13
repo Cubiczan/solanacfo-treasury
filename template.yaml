@@ -148,132 +148,138 @@ Resources:
 
   TransactionsTable:
     Type: AWS::DynamoDB::Table
-    KeySchema:
-      - AttributeName: transaction_id
-        KeyType: HASH
-    AttributeDefinitions:
-      - AttributeName: transaction_id
-        AttributeType: S
-      - AttributeName: treasury_id
-        AttributeType: S
-    GlobalSecondaryIndexes:
-      - IndexName: TreasuryTransactionIndex
-        KeySchema:
-          - AttributeName: treasury_id
-            KeyType: HASH
-        Projection:
-          ProjectionType: ALL
-    BillingMode: PAY_PER_REQUEST
-    PointInTimeRecoverySpecification:
-      PointInTimeRecoveryEnabled: true
-    TableName: solanacfo-transactions
-    SSESpecification:
-      SSEType: KMS
-      SSEEnabled: true
-      KMSMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
+    Properties:
+      KeySchema:
+        - AttributeName: transaction_id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: transaction_id
+          AttributeType: S
+        - AttributeName: treasury_id
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: TreasuryTransactionIndex
+          KeySchema:
+            - AttributeName: treasury_id
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      TableName: solanacfo-transactions
+      SSESpecification:
+        SSEType: KMS
+        SSEEnabled: true
+        KMSMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
 
   DeliberationsTable:
     Type: AWS::DynamoDB::Table
-    KeySchema:
-      - AttributeName: deliberation_id
-        KeyType: HASH
-    AttributeDefinitions:
-      - AttributeName: deliberation_id
-        AttributeType: S
-      - AttributeName: treasury_id
-        AttributeType: S
-      - AttributeName: status
-        AttributeType: S
-    GlobalSecondaryIndexes:
-      - IndexName: TreasuryDeliberationIndex
-        KeySchema:
-          - AttributeName: treasury_id
-            KeyType: HASH
-        Projection:
-          ProjectionType: ALL
-      - IndexName: StatusIndex
-        KeySchema:
-          - AttributeName: status
-            KeyType: HASH
-        Projection:
-          ProjectionType: ALL
-    BillingMode: PAY_PER_REQUEST
-    PointInTimeRecoverySpecification:
-      PointInTimeRecoveryEnabled: true
-    TableName: solanacfo-deliberations
-    SSESpecification:
-      SSEType: KMS
-      SSEEnabled: true
-      KMSMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
+    Properties:
+      KeySchema:
+        - AttributeName: deliberation_id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: deliberation_id
+          AttributeType: S
+        - AttributeName: treasury_id
+          AttributeType: S
+        - AttributeName: status
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: TreasuryDeliberationIndex
+          KeySchema:
+            - AttributeName: treasury_id
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+        - IndexName: StatusIndex
+          KeySchema:
+            - AttributeName: status
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      TableName: solanacfo-deliberations
+      SSESpecification:
+        SSEType: KMS
+        SSEEnabled: true
+        KMSMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
 
   GovernanceProposalsTable:
     Type: AWS::DynamoDB::Table
-    KeySchema:
-      - AttributeName: proposal_id
-        KeyType: HASH
-    AttributeDefinitions:
-      - AttributeName: proposal_id
-        AttributeType: S
-      - AttributeName: treasury_id
-        AttributeType: S
-      - AttributeName: status
-        AttributeType: S
-    GlobalSecondaryIndexes:
-      - IndexName: TreasuryProposalIndex
-        KeySchema:
-          - AttributeName: treasury_id
-            KeyType: HASH
-        Projection:
-          ProjectionType: ALL
-      - IndexName: ProposalStatusIndex
-        KeySchema:
-          - AttributeName: status
-            KeyType: HASH
-        Projection:
-          ProjectionType: ALL
-    BillingMode: PAY_PER_REQUEST
-    PointInTimeRecoverySpecification:
-      PointInTimeRecoveryEnabled: true
-    TableName: solanacfo-governance-proposals
-    SSESpecification:
-      SSEType: KMS
-      SSEEnabled: true
-      KMSMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
+    Properties:
+      KeySchema:
+        - AttributeName: proposal_id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: proposal_id
+          AttributeType: S
+        - AttributeName: treasury_id
+          AttributeType: S
+        - AttributeName: status
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: TreasuryProposalIndex
+          KeySchema:
+            - AttributeName: treasury_id
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+        - IndexName: ProposalStatusIndex
+          KeySchema:
+            - AttributeName: status
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      TableName: solanacfo-governance-proposals
+      SSESpecification:
+        SSEType: KMS
+        SSEEnabled: true
+        KMSMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
 
   RiskAlertsTable:
     Type: AWS::DynamoDB::Table
-    KeySchema:
-      - AttributeName: alert_id
-        KeyType: HASH
-    AttributeDefinitions:
-      - AttributeName: alert_id
-        AttributeType: S
-      - AttributeName: treasury_id
-        AttributeType: S
-      - AttributeName: severity
-        AttributeType: S
-    GlobalSecondaryIndexes:
-      - IndexName: TreasuryAlertIndex
-        KeySchema:
-          - AttributeName: treasury_id
-            KeyType: HASH
-        Projection:
-          ProjectionType: ALL
-      - IndexName: SeverityIndex
-        KeySchema:
-          - AttributeName: severity
-            KeyType: HASH
-        Projection:
-          ProjectionType: ALL
-    BillingMode: PAY_PER_REQUEST
-    TimeToLiveSpecification:
-      AttributeName: expires_at
-      Enabled: true
-    TableName: solanacfo-risk-alerts
-    SSESpecification:
-      SSEType: KMS
-      SSEEnabled: true
-      KMSMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
+    Properties:
+      KeySchema:
+        - AttributeName: alert_id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: alert_id
+          AttributeType: S
+        - AttributeName: treasury_id
+          AttributeType: S
+        - AttributeName: severity
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: TreasuryAlertIndex
+          KeySchema:
+            - AttributeName: treasury_id
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+        - IndexName: SeverityIndex
+          KeySchema:
+            - AttributeName: severity
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      TimeToLiveSpecification:
+        AttributeName: expires_at
+        Enabled: true
+      TableName: solanacfo-risk-alerts
+      SSESpecification:
+        SSEType: KMS
+        SSEEnabled: true
+        KMSMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
 
   # ─── S3 Buckets ──────────────────────────────────────────────────
 
@@ -378,8 +384,7 @@ Resources:
       RedrivePolicy:
         maxReceiveCount: 3
         deadLetterTargetArn: !GetAtt OnChainEventsDLQ.Arn
-      Encryption:
-        KmsMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
+      KmsMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
       Tags:
         - Key: Project
           Value: solanacfo-treasury
@@ -388,6 +393,7 @@ Resources:
     Type: AWS::SQS::Queue
     Properties:
       QueueName: solanacfo-onchain-events-dlq
+      KmsMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
 
   GovernanceEventsQueue:
     Type: AWS::SQS::Queue
@@ -398,13 +404,13 @@ Resources:
       RedrivePolicy:
         maxReceiveCount: 3
         deadLetterTargetArn: !GetAtt GovernanceEventsDLQ.Arn
-      Encryption:
-        KmsMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
+      KmsMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
 
   GovernanceEventsDLQ:
     Type: AWS::SQS::Queue
     Properties:
       QueueName: solanacfo-governance-events-dlq
+      KmsMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
 
   PriceAlertsQueue:
     Type: AWS::SQS::Queue
@@ -412,8 +418,7 @@ Resources:
       QueueName: solanacfo-price-alerts
       VisibilityTimeout: 120
       MessageRetentionPeriod: 86400
-      Encryption:
-        KmsMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
+      KmsMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
 
   # ─── SNS Topics ───────────────────────────────────────────────────
 
@@ -421,6 +426,7 @@ Resources:
     Type: AWS::SNS::Topic
     Properties:
       TopicName: solanacfo-price-alerts
+      KmsMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
       Tags:
         - Key: Project
           Value: solanacfo-treasury
@@ -429,6 +435,7 @@ Resources:
     Type: AWS::SNS::Topic
     Properties:
       TopicName: solanacfo-risk-alerts
+      KmsMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
       Tags:
         - Key: Project
           Value: solanacfo-treasury
@@ -437,6 +444,7 @@ Resources:
     Type: AWS::SNS::Topic
     Properties:
       TopicName: solanacfo-governance-alerts
+      KmsMasterKeyId: !GetAtt KMSStack.Outputs.KMSKeyId
       Tags:
         - Key: Project
           Value: solanacfo-treasury
