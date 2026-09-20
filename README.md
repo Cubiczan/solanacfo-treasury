@@ -29,14 +29,14 @@
 
 ## Features
 
-- **5-Agent Council**: Portfolio Analyzer, Risk Monitor, Yield Strategist, Governance Analyst, Treasury CFO
-- **Solana Integration**: RPC calls for SOL/SPL balances, token accounts, transaction history
-- **Anchor Program**: On-chain treasury governance with token-weighted voting (Rust)
-- **DeFi Analytics**: TVL, APY, impermanent loss, liquidation risk calculations
-- **Governance Executor**: Create/execute proposals on-chain with quorum thresholds
-- **Voice Briefings**: Deepgram TTS treasury status updates
-- **Event-Driven Monitoring**: SQS-triggered alerts for large transfers and governance events
-- **Observability**: PRISMtrace on BlockConvey for Bedrock calls across the council
+- **5-Agent Council**: Portfolio Analyzer, Risk Monitor, Yield Strategist, Governance Analyst, Treasury CFO (`agents/portfolio_analyzer.py`, `agents/risk_monitor_agent.py`, `agents/yield_strategist.py`, `agents/governance_analyst.py`, `agents/treasury_cfo.py`)
+- **Solana Integration**: RPC calls for SOL/SPL balances, token accounts, transaction history (`lambdas/common/solana_client.py`)
+- **Anchor Program**: On-chain treasury governance with token-weighted voting (Rust) (`programs/src/lib.rs`)
+- **DeFi Analytics**: TVL, APY, impermanent loss, liquidation risk calculations (`lambdas/common/defi_analytics.py`)
+- **Governance Executor**: Create/execute proposals on-chain with quorum thresholds (`lambdas/governance_executor/app.py`)
+- **Voice Briefings**: Deepgram TTS treasury status updates (`lambdas/common/deepgram_client.py`)
+- **Event-Driven Monitoring**: SQS-triggered alerts for large transfers and governance events (`lambdas/risk_monitor/app.py`)
+- **Observability**: PRISMtrace on BlockConvey for Bedrock calls across the council (`lambdas/common/prism_observability.py`)
 
 ## Tech Stack
 
