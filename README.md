@@ -63,3 +63,15 @@ cd programs && anchor build && anchor deploy --provider.cluster localnet
 ## License
 
 MIT
+
+## Propagation notes (wave B)
+
+- **Row 7 (Sentinel-style circuit breaker) — reversed.** The reversal
+  condition fires: Sentinel needs a dense, rolling action stream with
+  correlated-failure structure to detect, while the treasury's autonomous
+  surface is episodic — scheduled lambdas
+  (`lambdas/council_deliberation/app.py` and the analyst lambdas) plus a
+  human-in-the-loop council vote per action. The repository also carries no
+  breaker, pause, or halt machinery to extend (`grep` across `lambdas/` and
+  `agents/` finds none). Reopens if the desk runs a high-frequency
+  autonomous action loop rather than deliberated, scheduled cycles.
